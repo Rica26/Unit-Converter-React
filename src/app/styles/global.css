@@ -1,0 +1,10 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  background-color: #f0f0f0;
+}
+:root {
+  --font-geist-sans: 'Geist Sans', sans-serif;
+  --font-geist-mono: 'Geist Mono', monospace;
+}
