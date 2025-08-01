@@ -1,5 +1,6 @@
 import React, { useState, useMemo, useEffect } from "react";
 import { categoryConfig, convertUnits } from "../helpers/logic";
+import "../styles/global.css";
 
 export default function Converter({ selectedCategory }: { selectedCategory: string }) {
   const [moedasUnit, setMoedasUnit] = useState<string[]>([]);
@@ -48,10 +49,13 @@ export default function Converter({ selectedCategory }: { selectedCategory: stri
     if (inputValue && inputUnit && outputUnit) {
       const numericInput = parseFloat(inputValue);
       if (!isNaN(numericInput)) {
-        if (selectedCategory === "Moeda" && currencyRates) {
-          return convertUnits(numericInput, inputUnit, outputUnit, selectedCategory, currencyRates).toString();
-        } else {
+        if (selectedCategory !== "Moeda") {
           return convertUnits(numericInput, inputUnit, outputUnit, selectedCategory).toString();
+        } else {
+          if (Object.keys(currencyRates).length === 0) {
+            return "Carregando taxas...";
+          }
+          return convertUnits(numericInput, inputUnit, outputUnit, selectedCategory, currencyRates).toString();
         }
       }
     }
@@ -66,7 +70,7 @@ export default function Converter({ selectedCategory }: { selectedCategory: stri
 
   return (
     <>
-      <div style={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
+      <div className="inputContainer">
         <input
           type="text"
           value={inputValue}
@@ -81,16 +85,32 @@ export default function Converter({ selectedCategory }: { selectedCategory: stri
           ))}
         </select>
       </div>
-      <div>
-        <button onClick={swapUnits}>Swap</button>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          aspectRatio: "1 / 1",
+          width: "25%",
+        }}
+      >
+        <button
+          style={{
+            backgroundColor: "#0047ab",
+            backgroundImage: "url('/reverse_arrow.png')",
+            backgroundSize: "cover",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center",
+            color: "white",
+            border: "none",
+            cursor: "pointer",
+            width: "100%",
+            borderRadius: "50px",
+          }}
+          onClick={swapUnits}
+        ></button>
       </div>
-      <div style={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
-        <input
-          type="text"
-          value={outputValue ?? ""}
-          placeholder="Valor convertido"
-          disabled
-        />
+      <div className="outputContainer">
+        <input type="text" value={outputValue ?? ""} placeholder="Valor convertido" disabled />
         <select value={outputUnit} onChange={(e) => setOutputUnit(e.target.value)}>
           {units.map((unit) => (
             <option key={unit} value={unit}>
