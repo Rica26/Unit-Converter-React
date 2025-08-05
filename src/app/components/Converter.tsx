@@ -1,6 +1,5 @@
 import React, { useState, useMemo, useEffect } from "react";
 import { categoryConfig, convertUnits } from "../helpers/logic";
-import "../styles/global.css";
 
 export default function Converter({ selectedCategory }: { selectedCategory: string }) {
   const [moedasUnit, setMoedasUnit] = useState<string[]>([]);
@@ -85,29 +84,8 @@ export default function Converter({ selectedCategory }: { selectedCategory: stri
           ))}
         </select>
       </div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          aspectRatio: "1 / 1",
-          width: "25%",
-        }}
-      >
-        <button
-          style={{
-            backgroundColor: "#0047ab",
-            backgroundImage: "url('/reverse_arrow.png')",
-            backgroundSize: "cover",
-            backgroundRepeat: "no-repeat",
-            backgroundPosition: "center",
-            color: "white",
-            border: "none",
-            cursor: "pointer",
-            width: "100%",
-            borderRadius: "50px",
-          }}
-          onClick={swapUnits}
-        ></button>
+      <div className="swapButtonContainer">
+        <button onClick={swapUnits}></button>
       </div>
       <div className="outputContainer">
         <input type="text" value={outputValue ?? ""} placeholder="Valor convertido" disabled />

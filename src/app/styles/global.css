@@ -11,6 +11,48 @@ html {
   font-family: sans-serif;
 }
 
+.mainContainer {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid gold;
+  border-radius: 12px;
+}
+
+.converterContainer {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.unitSelectorContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.unitSelectorContainer label {
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.unitSelectorContainer select {
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid #efbf04;
+  color: white;
+  background-color: #0047ab;
+  font-size: 15px;
+  padding: 8px;
+  font-weight: bold;
+}
 .inputContainer,
 .outputContainer {
   display: flex;
@@ -47,6 +89,24 @@ html {
   color: white;
 }
 
-.button:hover {
+.swapButtonContainer {
+  display: flex;
+  justify-content: center;
+  aspect-ratio: 1 / 1;
+  width: 25%;
+}
+.swapButtonContainer button {
+  background-color: #0047ab;
+  background-image: url('/reverse_arrow.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  color: white;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  border-radius: 50px;
+}
+.swapButtonContainer button:hover {
   background-color: darkblue;
 }
